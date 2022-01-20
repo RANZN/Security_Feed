@@ -3,10 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/drawable/ic_add_post.xml" value="0.3452502553626149" />
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/drawable/ic_icon_google.xml" value="0.35208333333333336" />
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/drawable/ic_launcher_background.xml" value="0.35208333333333336" />
-        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/layout/activity_home.xml" value="0.14444444444444443" />
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/drawable/ic_menu.xml" value="0.3452502553626149" />
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/drawable/ic_profile.xml" value="0.3452502553626149" />
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/layout/fragment_detailed.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/layout/fragment_home.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/layout/fragment_post.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/layout/fragment_profile.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/menu/bottom_navigation.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/Kotlin/SecurityFeed/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.15833333333333333" />
       </map>
     </option>
   </component>

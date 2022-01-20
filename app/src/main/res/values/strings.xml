@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Security Feed</string>
-<!--    <string name="default_web_client_id">1082067019303-hrtehdahlr70rqoush9mtm6an0jiu1gv.apps.googleusercontent.com</string>-->
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="feeds">Feeds</string>
+    <string name="profile">Profile</string>
+    <!--    <string name="default_web_client_id">1082067019303-hrtehdahlr70rqoush9mtm6an0jiu1gv.apps.googleusercontent.com</string>-->
 </resources>

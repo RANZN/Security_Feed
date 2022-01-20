@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/postBackgroundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#7F000000"
+        tools:context=".view.fragments.PostFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/postLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <EditText
+                android:id="@+id/postDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:hint="Post"
+                android:inputType="textMultiLine"
+                android:maxLines="7"
+                android:minLines="3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/attachImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:padding="20dp"
+                android:src="@drawable/ic_attach"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/postDescription" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:padding="2dp"
+                android:src="@drawable/ic_profile"
+                app:layout_constraintBottom_toBottomOf="@id/attachImage"
+                app:layout_constraintStart_toEndOf="@id/attachImage"
+                app:layout_constraintTop_toTopOf="@id/attachImage" />
+
+            <Button
+                android:id="@+id/postBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="10dp"
+                android:text="POST"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/cancelPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:src="@drawable/ic_cancel_48"
+            app:layout_constraintBottom_toTopOf="@id/postLayout"
+            app:layout_constraintEnd_toEndOf="@id/postLayout"
+            app:layout_constraintStart_toEndOf="@id/postLayout"
+            app:layout_constraintTop_toTopOf="@id/postLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

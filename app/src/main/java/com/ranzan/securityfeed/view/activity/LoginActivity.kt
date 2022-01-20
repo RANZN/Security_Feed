@@ -1,4 +1,4 @@
-package com.ranzan.securityfeed.view
+package com.ranzan.securityfeed.view.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,11 +15,10 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.ranzan.securityfeed.R
-import com.ranzan.securityfeed.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
+import com.ranzan.securityfeed.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
@@ -30,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         auth = Firebase.auth
 
@@ -91,7 +90,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToHomePage() {
-        startActivity(Intent(this, HomeActivity::class.java))
+        val intent = Intent(this, HomeActivity::class.java)
+        finish()
+        startActivity(intent)
     }
 
 

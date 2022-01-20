@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SecurityFeed">
         <activity
-            android:name=".view.HomeActivity"
+            android:name=".view.activity.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".view.LoginActivity"
+            android:name=".view.activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
