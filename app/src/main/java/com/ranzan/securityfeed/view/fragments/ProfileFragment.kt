@@ -27,6 +27,7 @@ class ProfileFragment : Fragment(), PostOnClickListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var onClickProfile: OnClickProfile
     private lateinit var viewmodel: TheViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
@@ -61,14 +62,8 @@ class ProfileFragment : Fragment(), PostOnClickListener {
             }
         }
 
-        viewmodel.getData().observe(viewLifecycleOwner, Observer {
-            val list = mutableListOf<PostData>()
-            it.forEach {
-                if (it.userUid == auth.currentUser!!.uid) {
-                    list.add(it)
-                }
-            }
-            setRecyclerView(list as ArrayList<PostData>)
+        viewmodel.getProfileLists().observe(viewLifecycleOwner, Observer {
+            setRecyclerView(it as ArrayList<PostData>)
         })
     }
 
