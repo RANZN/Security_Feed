@@ -30,7 +30,6 @@ class TheViewModel : ViewModel() {
     private val toastLive = MutableLiveData<String>()
     private val progressLive = MutableLiveData<Int>()
 
-
     fun fetchData() {
         val list = mutableListOf<PostData>()
         val profileList = mutableListOf<PostData>()

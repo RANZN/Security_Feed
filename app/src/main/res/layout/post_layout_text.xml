@@ -36,12 +36,10 @@
 
             <TextView
                 android:id="@+id/postDescription"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_5"
                 android:padding="@dimen/dp_15"
-                android:hint="content"
                 android:text="@{item.postDescription}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_21"

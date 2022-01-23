@@ -27,8 +27,6 @@ class HomeActivity : AppCompatActivity(), OnClickProfile {
         viewmodel.fetchData()
 
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, HomeFragment()).commit()
-
-
         binding.bottomNavigation.setOnItemSelectedListener(object : NavigationBarView.OnItemSelectedListener {
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
                 when (item.itemId) {
