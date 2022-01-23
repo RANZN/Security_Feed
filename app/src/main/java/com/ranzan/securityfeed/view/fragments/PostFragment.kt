@@ -9,28 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.ranzan.securityfeed.R
 import com.ranzan.securityfeed.databinding.FragmentPostBinding
-import com.ranzan.securityfeed.model.PostData
 import com.ranzan.securityfeed.viewmodel.TheViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class PostFragment : Fragment() {
 
     private lateinit var binding: FragmentPostBinding
     private lateinit var viewModel: TheViewModel
-    private lateinit var auth: FirebaseAuth
-    private var db = Firebase.database.getReference("posts")
-    private val storage = FirebaseStorage.getInstance()
     private lateinit var imageUri: Uri
 
     override fun onCreateView(
@@ -38,7 +26,6 @@ class PostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(requireActivity()).get(TheViewModel::class.java)
-        auth = Firebase.auth
         binding = FragmentPostBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -64,86 +51,44 @@ class PostFragment : Fragment() {
             postBtn.setOnClickListener {
                 sendPost()
             }
+            progressObserver()
         }
     }
 
-    private fun sendPost() {
-        Toast.makeText(context, "Sending Post..", Toast.LENGTH_SHORT).show()
-        val key = db.push().key
-        val database=db.child(key!!)
-        val currentUser = auth.currentUser!!
-        if (this::imageUri.isInitialized) {
-            val uploader = storage.getReference(key!!)
-            uploader.putFile(imageUri).addOnProgressListener {
+    private fun progressObserver() {
+        viewModel.getToasts().observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
+        })
+        viewModel.getProgress().observe(viewLifecycleOwner, Observer { value ->
+            if (value == 1) {
                 binding.apply {
                     loadingScreen.visibility = View.VISIBLE
                     progressBar.visibility = View.VISIBLE
                     postBtn.visibility = View.INVISIBLE
                 }
-            }.addOnSuccessListener {
-                uploader.downloadUrl.addOnSuccessListener {
-                    val postData = PostData(
-                        key,
-                        currentUser.uid,
-                        currentUser.displayName!!,
-                        binding.postDescription.text.toString(),
-                        it.toString(),
-                        listOf(currentUser.uid),
-                        null
-                    )
-                    database.setValue(postData).addOnSuccessListener {
-                        binding.apply {
-                            loadingScreen.visibility = View.GONE
-                            progressBar.visibility = View.GONE
-                            postBtn.visibility = View.VISIBLE
-                            postBtn.text = "DONE"
-                            postBtn.setBackgroundColor(resources.getColor(R.color.yellow))
-                        }
-
-                        CoroutineScope(Dispatchers.Main).launch {
-                            Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
-                            delay(1000)
-                            activity?.onBackPressed()
-                        }
-
-                    }.addOnFailureListener {
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
-                    }
-                }.addOnFailureListener {
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(context, "Failed to upload image", Toast.LENGTH_SHORT).show()
+            } else if (value == 2) {
+                binding.apply {
+                    loadingScreen.visibility = View.GONE
+                    progressBar.visibility = View.GONE
+                    postBtn.visibility = View.VISIBLE
+                    postBtn.text = "DONE"
+                    postBtn.setBackgroundColor(resources.getColor(R.color.yellow))
                 }
-            }
+            } else if (value == 3) {
+                binding.progressBar.visibility = View.GONE
+            } else if (value == 4) {
+                activity?.onBackPressed()
 
+            }
+        })
+    }
+
+    private fun sendPost() {
+        if (this::imageUri.isInitialized) {
+            viewModel.sendPost(binding.postDescription.text.toString(), imageUri)
         } else {
-            val postData = PostData(
-                key!!,
-                auth.currentUser!!.uid,
-                auth.currentUser!!.displayName!!,
-                binding.postDescription.text.toString(),
-                null,
-                listOf(currentUser.uid),
-                null
-            )
-            database.setValue(postData).addOnSuccessListener {
-                binding.progressBar.visibility = View.GONE
-                binding.postBtn.apply {
-                    text = "DONE"
-                    setBackgroundColor(resources.getColor(R.color.yellow))
-                }
-                CoroutineScope(Dispatchers.Main).launch {
-                    Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
-                    delay(700)
-                    activity?.onBackPressed()
-                }
-            }.addOnFailureListener {
-                binding.progressBar.visibility = View.GONE
-                Toast.makeText(context, "Failed To Post", Toast.LENGTH_SHORT).show()
-            }
+            viewModel.sendPost(binding.postDescription.text.toString())
         }
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
