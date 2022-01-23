@@ -13,14 +13,14 @@ import com.ranzan.securityfeed.model.PostData
 class TheViewModel : ViewModel() {
 
     private val db = Firebase.database.getReference("posts")
-    private val list = mutableListOf<PostData>()
     private val listLiveData = MutableLiveData<List<PostData>>()
 
     fun fetchData() {
         db.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val list = mutableListOf<PostData>()
                 for (snapshot in snapshot.children) {
-                    val data = snapshot.getValue(PostData::class.java)
+                    val data: PostData? = snapshot.getValue(PostData::class.java)
                     list.add(data!!)
                 }
                 list.reverse()

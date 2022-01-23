@@ -7,8 +7,13 @@ data class PostData(
     val userName: String,
     val postDescription: String,
     val imageUrl: String? = null,
-    val likes: Int,
-    val comments: List<String>? = null
+    val likes: List<String>,
+    val comments: List<Comments>? = null
 ) {
-    constructor() : this("", "", "", "", null, 0, null)
+    constructor() : this("", "", "", "", null, mutableListOf(), null)
 }
+
+data class Comments(
+    val userName: String,
+    val comment: String
+)

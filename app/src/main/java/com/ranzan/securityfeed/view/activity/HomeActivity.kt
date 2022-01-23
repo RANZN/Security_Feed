@@ -16,7 +16,6 @@ import com.ranzan.securityfeed.view.fragments.ProfileFragment
 import com.ranzan.securityfeed.view.listner.OnClickProfile
 import com.ranzan.securityfeed.viewmodel.TheViewModel
 
-
 class HomeActivity : AppCompatActivity(), OnClickProfile {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var viewmodel: TheViewModel
@@ -49,7 +48,6 @@ class HomeActivity : AppCompatActivity(), OnClickProfile {
 
     override fun addPost() {
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, PostFragment()).addToBackStack("post").commit()
-
     }
 
     override fun detailedView() {

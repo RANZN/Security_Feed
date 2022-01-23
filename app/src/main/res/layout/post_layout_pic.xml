@@ -7,9 +7,6 @@
             name="item"
             type="com.ranzan.securityfeed.model.PostData" />
 
-        <variable
-            name="onClick"
-            type="com.ranzan.securityfeed.view.listner.PostOnClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -63,7 +60,6 @@
                 android:drawableLeft="@drawable/ic_heart"
                 android:gravity="center"
                 android:text="Like"
-                android:onClick="@{()->onClick.onLike()}"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@id/commentBtn"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,8 +71,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_5"
                 android:background="#00000000"
-                android:onClick="@{()->onClick.onComment()}"
-
                 android:drawableLeft="@drawable/ic_comment"
                 android:gravity="center"
                 android:text="Comment"

@@ -79,11 +79,12 @@ class ProfileFragment : Fragment(), PostOnClickListener {
         }
     }
 
-    override fun onLike() {
+    override fun onLike(postData: PostData) {
 
     }
 
-    override fun onComment() {
+    override fun onComment(postData: PostData) {
 
     }
+
 }

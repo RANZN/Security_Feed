@@ -2,6 +2,7 @@ package com.ranzan.securityfeed.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -48,7 +49,14 @@ class MainAdapter(private val list: ArrayList<PostData>, private val postOnClick
         fun bindData(postData: PostData, postOnClickListener: PostOnClickListener) {
             postLayoutTextBinding.apply {
                 item = postData
-                onClick = postOnClickListener
+
+                likeBtn.setOnClickListener {
+                    postOnClickListener.onLike(postData)
+                    likeBtn.setBackgroundColor(getColor(it.context, R.color.purple_500))
+                }
+                commentBtn.setOnClickListener {
+                    postOnClickListener.onComment(postData)
+                }
             }
         }
     }
@@ -57,7 +65,13 @@ class MainAdapter(private val list: ArrayList<PostData>, private val postOnClick
         fun bindData(postData: PostData, postOnClickListener: PostOnClickListener) {
             postLayoutPicBinding.apply {
                 item = postData
-                onClick = postOnClickListener
+                likeBtn.setOnClickListener {
+                    postOnClickListener.onLike(postData)
+                    likeBtn.setBackgroundColor(getColor(it.context, R.color.purple_500))
+                }
+                commentBtn.setOnClickListener {
+                    postOnClickListener.onComment(postData)
+                }
             }
             postLayoutPicBinding.postImage.apply {
                 Glide.with(this).load(postData.imageUrl).into(this)

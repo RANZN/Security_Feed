@@ -7,9 +7,6 @@
             name="item"
             type="com.ranzan.securityfeed.model.PostData" />
 
-        <variable
-            name="onClick"
-            type="com.ranzan.securityfeed.view.listner.PostOnClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -51,40 +48,33 @@
                 app:layout_constraintTop_toBottomOf="@id/userName" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/likeBtn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_5"
-                android:weightSum="2"
-                app:layout_constraintTop_toBottomOf="@id/postDescription">
+                android:background="#00000000"
+                android:drawableLeft="@drawable/ic_heart"
+                android:gravity="center"
+                android:text="Like"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/commentBtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/postDescription" />
 
-                <Button
-                    android:id="@+id/likeBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_weight="1"
-                    android:background="#00000000"
-                    android:drawableLeft="@drawable/ic_heart"
-                    android:gravity="center"
-                    android:onClick="@{()->onClick.onLike()}"
-                    android:text="@{String.valueOf(item.likes)}"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:id="@+id/commentBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_weight="1"
-                    android:background="#00000000"
-                    android:drawableLeft="@drawable/ic_comment"
-                    android:onClick="@{()->onClick.onComment()}"
-                    android:text="@{String.valueOf(item.comments.size())}"
-                    android:textColor="@color/black" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/commentBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:background="#00000000"
+                android:drawableLeft="@drawable/ic_comment"
+                android:gravity="center"
+                android:text="Comment"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/likeBtn"
+                app:layout_constraintTop_toBottomOf="@id/postDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

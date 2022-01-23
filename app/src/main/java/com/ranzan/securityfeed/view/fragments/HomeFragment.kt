@@ -1,6 +1,5 @@
 package com.ranzan.securityfeed.view.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +35,9 @@ class HomeFragment : Fragment(), PostOnClickListener{
         viewmodel.getData().observe(viewLifecycleOwner, Observer {
             setRecyclerView(it!! as ArrayList<PostData>)
         })
+        binding.addPostBtn.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().add(R.id.fragment_container, PostFragment()).addToBackStack("post").commit()
+        }
     }
 
     private fun setRecyclerView(list: ArrayList<PostData>) {
@@ -46,11 +48,11 @@ class HomeFragment : Fragment(), PostOnClickListener{
         }
     }
 
-    override fun onLike() {
+    override fun onLike(postData: PostData) {
 
     }
 
-    override fun onComment() {
+    override fun onComment(postData: PostData) {
 
     }
 }
