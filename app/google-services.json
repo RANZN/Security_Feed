@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1082067019303",
+    "project_id": "security-feed-a94a1",
+    "storage_bucket": "security-feed-a94a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082067019303:android:d640b4a0f4d3c9fe3d9002",
+        "android_client_info": {
+          "package_name": "com.ranzan.securityfeed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082067019303-hrtehdahlr70rqoush9mtm6an0jiu1gv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATyDWoZZX3ZEtljPw8bOAKUC_lB0EAy0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082067019303-hrtehdahlr70rqoush9mtm6an0jiu1gv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
