@@ -20,20 +20,24 @@ import kotlinx.coroutines.launch
 class TheViewModel : ViewModel() {
 
     private val db = Firebase.database.getReference("posts")
+    private val storage = FirebaseStorage.getInstance()
+    private var auth = Firebase.auth
+
+
     private val listLiveData = MutableLiveData<List<PostData>>()
     private val profileListLiveData = MutableLiveData<List<PostData>>()
-    private var auth = Firebase.auth
+
     private val toastLive = MutableLiveData<String>()
     private val progressLive = MutableLiveData<Int>()
-    private val storage = FirebaseStorage.getInstance()
-    private val list = mutableListOf<PostData>()
-    private val profileList = mutableListOf<PostData>()
 
 
     fun fetchData() {
+        val list = mutableListOf<PostData>()
+        val profileList = mutableListOf<PostData>()
         db.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snapshot in snapshot.children) {
+
                     val data: PostData? = snapshot.getValue(PostData::class.java)
                     list.add(data!!)
                     if (data.userUid == auth.currentUser!!.uid) {
