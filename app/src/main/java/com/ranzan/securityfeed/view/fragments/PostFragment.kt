@@ -37,7 +37,7 @@ class PostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(TheViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(TheViewModel::class.java)
         auth = Firebase.auth
         binding = FragmentPostBinding.inflate(inflater, container, false)
         return binding.root
@@ -97,12 +97,8 @@ class PostFragment : Fragment() {
                             postBtn.text = "DONE"
                             postBtn.setBackgroundColor(resources.getColor(R.color.yellow))
                         }
+                        Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
 
-                        CoroutineScope(Dispatchers.Main).launch {
-                            Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
-                            delay(1000)
-                            activity?.onBackPressed()
-                        }
 
                     }.addOnFailureListener {
                         binding.progressBar.visibility = View.GONE
@@ -130,11 +126,9 @@ class PostFragment : Fragment() {
                     text = "DONE"
                     setBackgroundColor(resources.getColor(R.color.yellow))
                 }
-                CoroutineScope(Dispatchers.Main).launch {
-                    Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
-                    delay(700)
-                    activity?.onBackPressed()
-                }
+
+                Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
+
             }.addOnFailureListener {
                 binding.progressBar.visibility = View.GONE
                 Toast.makeText(context, "Failed To Post", Toast.LENGTH_SHORT).show()

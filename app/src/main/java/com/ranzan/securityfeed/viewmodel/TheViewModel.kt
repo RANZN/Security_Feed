@@ -14,24 +14,29 @@ class TheViewModel : ViewModel() {
 
     private val db = Firebase.database.getReference("posts")
     private val list = mutableListOf<PostData>()
-    private val liveData = MutableLiveData<List<PostData>>()
-    fun getData(): LiveData<List<PostData>> {
+    private val listLiveData = MutableLiveData<List<PostData>>()
 
+    fun fetchData() {
         db.addValueEventListener(object : ValueEventListener {
-
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snapshot in snapshot.children) {
                     val data = snapshot.getValue(PostData::class.java)
                     list.add(data!!)
                 }
-                liveData.postValue(list)
+                list.reverse()
+                listLiveData.postValue(list)
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
-
         })
-        return liveData
+    }
+
+    fun getData() = listLiveData as LiveData<List<PostData>>
+
+
+    fun like() {
+
     }
 }
