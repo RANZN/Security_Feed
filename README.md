@@ -1,7 +1,8 @@
 # Security_Feed
-* Different User can login
+* Different User can login using google account
 * Can share Post as text as well as Image
 * Can Like the post
+* Can logout
 <h3>DEMO</h3>
 
 
