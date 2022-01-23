@@ -19,7 +19,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <EditText
                 android:id="@+id/postDescription"
                 android:layout_width="match_parent"
@@ -31,6 +30,17 @@
                 android:minLines="3"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/selectedImage"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:padding="2dp"
+                android:src="@drawable/ic_profile"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/postDescription" />
+
             <ImageButton
                 android:id="@+id/attachImage"
                 android:layout_width="wrap_content"
@@ -38,18 +48,11 @@
                 android:background="#00000000"
                 android:padding="20dp"
                 android:src="@drawable/ic_attach"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/postDescription" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/selectedImage"
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginStart="10dp"
-                android:padding="2dp"
-                android:src="@drawable/ic_profile"
-                app:layout_constraintBottom_toBottomOf="@id/attachImage"
-                app:layout_constraintStart_toEndOf="@id/attachImage"
-                app:layout_constraintTop_toTopOf="@id/attachImage" />
+                />
+
 
             <Button
                 android:id="@+id/postBtn"
@@ -59,7 +62,20 @@
                 android:padding="10dp"
                 android:text="POST"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/postDescription"
                 app:layout_constraintEnd_toEndOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/postBtn"
+                app:layout_constraintEnd_toEndOf="@id/postBtn"
+                app:layout_constraintStart_toStartOf="@id/postBtn"
+                app:layout_constraintTop_toTopOf="@id/postBtn"
+
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageButton
@@ -72,6 +88,13 @@
             app:layout_constraintEnd_toEndOf="@id/postLayout"
             app:layout_constraintStart_toEndOf="@id/postLayout"
             app:layout_constraintTop_toTopOf="@id/postLayout" />
+
+        <View
+            android:id="@+id/loadingScreen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#37CCCCCC"
+            android:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

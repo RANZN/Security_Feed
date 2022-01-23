@@ -7,13 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.ranzan.securityfeed.R
 import com.ranzan.securityfeed.databinding.FragmentDetailedBinding
 import com.ranzan.securityfeed.view.activity.LoginActivity
 import com.ranzan.securityfeed.view.listner.OnClickProfile
-
 
 class DetailedFragment : Fragment() {
 
@@ -38,14 +40,17 @@ class DetailedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            profileName.text = auth.currentUser!!.displayName
-            profileEmail.text = auth.currentUser!!.email
-        }
-
-        binding.signOutBtn.setOnClickListener {
-            auth.signOut()
-            val intent = Intent(context, LoginActivity::class.java)
-            startActivity(intent)
+            auth.currentUser!!.apply {
+                profileName.text = displayName
+                profileEmail.text = email
+                Glide.with(profileImage).load(photoUrl).placeholder(R.drawable.ic_profile).apply(RequestOptions.circleCropTransform())
+                    .into(profileImage)
+            }
+            signOutBtn.setOnClickListener {
+                auth.signOut()
+                val intent = Intent(context, LoginActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 

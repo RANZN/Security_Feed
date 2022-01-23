@@ -42,7 +42,6 @@ class HomeActivity : AppCompatActivity(), OnClickProfile {
                 return false
             }
         })
-
     }
 
     override fun addPost() {

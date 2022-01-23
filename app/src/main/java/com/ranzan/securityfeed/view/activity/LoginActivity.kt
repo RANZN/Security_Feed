@@ -79,7 +79,6 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithCredential:success")
                     Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-//                    val user = auth.currentUser
                     goToHomePage()
                 } else {
                     // If sign in fails, display a message to the user.
