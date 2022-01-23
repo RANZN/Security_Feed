@@ -56,7 +56,7 @@
                 android:background="#00000000"
                 android:drawableLeft="@drawable/ic_heart"
                 android:gravity="center"
-                android:text="@{String.valueOf(item.likes.size())}"
+                android:text="@{String.valueOf(item.likes.size()-1)}"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@id/commentBtn"
                 app:layout_constraintStart_toStartOf="parent"
