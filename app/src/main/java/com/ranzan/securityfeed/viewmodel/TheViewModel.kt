@@ -37,7 +37,6 @@ class TheViewModel : ViewModel() {
         db.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snapshot in snapshot.children) {
-
                     val data: PostData? = snapshot.getValue(PostData::class.java)
                     list.add(data!!)
                     if (data.userUid == auth.currentUser!!.uid) {
