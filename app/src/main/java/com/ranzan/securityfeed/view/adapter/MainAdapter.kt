@@ -52,7 +52,7 @@ class MainAdapter(private val list: ArrayList<PostData>, private val postOnClick
 
                 likeBtn.setOnClickListener {
                     postOnClickListener.onLike(postData)
-                    likeBtn.setBackgroundColor(getColor(it.context, R.color.purple_500))
+//                    likeBtn.setBackgroundColor(getColor(it.context, R.color.purple_500))
                 }
                 commentBtn.setOnClickListener {
                     postOnClickListener.onComment(postData)
@@ -67,7 +67,7 @@ class MainAdapter(private val list: ArrayList<PostData>, private val postOnClick
                 item = postData
                 likeBtn.setOnClickListener {
                     postOnClickListener.onLike(postData)
-                    likeBtn.setBackgroundColor(getColor(it.context, R.color.purple_500))
+//                    likeBtn.setBackgroundColor(getColor(it.context, R.color.purple_500))
                 }
                 commentBtn.setOnClickListener {
                     postOnClickListener.onComment(postData)

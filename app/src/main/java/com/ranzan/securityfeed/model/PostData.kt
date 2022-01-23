@@ -7,8 +7,8 @@ data class PostData(
     val userName: String,
     val postDescription: String,
     val imageUrl: String? = null,
-    val likes: List<String>,
-    val comments: List<Comments>? = null
+    var likes: List<String>,
+    var comments: List<Comments>? = null
 ) {
     constructor() : this("", "", "", "", null, mutableListOf(), null)
 }

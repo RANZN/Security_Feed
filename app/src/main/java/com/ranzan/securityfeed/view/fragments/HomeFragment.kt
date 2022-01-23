@@ -49,7 +49,8 @@ class HomeFragment : Fragment(), PostOnClickListener{
     }
 
     override fun onLike(postData: PostData) {
-
+        val key = postData.key
+        viewmodel.like(key)
     }
 
     override fun onComment(postData: PostData) {

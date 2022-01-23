@@ -70,6 +70,7 @@ class PostFragment : Fragment() {
     private fun sendPost() {
         Toast.makeText(context, "Sending Post..", Toast.LENGTH_SHORT).show()
         val key = db.push().key
+        val database=db.child(key!!)
         val currentUser = auth.currentUser!!
         if (this::imageUri.isInitialized) {
             val uploader = storage.getReference(key!!)
@@ -90,7 +91,7 @@ class PostFragment : Fragment() {
                         listOf(currentUser.uid),
                         null
                     )
-                    db.push().setValue(postData).addOnSuccessListener {
+                    database.setValue(postData).addOnSuccessListener {
                         binding.apply {
                             loadingScreen.visibility = View.GONE
                             progressBar.visibility = View.GONE
@@ -125,7 +126,7 @@ class PostFragment : Fragment() {
                 listOf(currentUser.uid),
                 null
             )
-            db.push().setValue(postData).addOnSuccessListener {
+            database.setValue(postData).addOnSuccessListener {
                 binding.progressBar.visibility = View.GONE
                 binding.postBtn.apply {
                     text = "DONE"
