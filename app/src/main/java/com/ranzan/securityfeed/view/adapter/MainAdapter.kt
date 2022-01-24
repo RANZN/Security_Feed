@@ -2,8 +2,8 @@ package com.ranzan.securityfeed.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ranzan.securityfeed.R
@@ -12,9 +12,10 @@ import com.ranzan.securityfeed.databinding.PostLayoutTextBinding
 import com.ranzan.securityfeed.model.PostData
 import com.ranzan.securityfeed.view.listner.PostOnClickListener
 
-class MainAdapter(private val list: ArrayList<PostData>, private val postOnClickListener: PostOnClickListener) :
+class MainAdapter(private val postOnClickListener: PostOnClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var list = ArrayList<PostData>()
     override fun getItemViewType(position: Int): Int {
         if (list[position].imageUrl == null) {
             return 1
@@ -44,6 +45,14 @@ class MainAdapter(private val list: ArrayList<PostData>, private val postOnClick
 
     override fun getItemCount(): Int = list.size
 
+
+    fun updateData(newList: ArrayList<PostData>) {
+        val diffUtilCallBack = DiffUtilCallBack(list, newList)
+        val diffResult = DiffUtil.calculateDiff(diffUtilCallBack)
+        list.clear()
+        list.addAll(newList)
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     class PostTextViewHolder(private val postLayoutTextBinding: PostLayoutTextBinding) : RecyclerView.ViewHolder(postLayoutTextBinding.root) {
         fun bindData(postData: PostData, postOnClickListener: PostOnClickListener) {

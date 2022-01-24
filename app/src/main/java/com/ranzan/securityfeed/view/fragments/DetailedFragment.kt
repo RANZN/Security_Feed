@@ -27,6 +27,7 @@ class DetailedFragment : Fragment() {
         super.onAttach(context)
         onClickProfile = context as OnClickProfile
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

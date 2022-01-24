@@ -43,6 +43,7 @@ class TheViewModel : ViewModel() {
                     }
                 }
                 list.reverse()
+                profileList.reverse()
                 listLiveData.postValue(list)
                 profileListLiveData.postValue(profileList)
             }

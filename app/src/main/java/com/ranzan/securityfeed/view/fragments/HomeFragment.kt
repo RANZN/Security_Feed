@@ -20,6 +20,7 @@ class HomeFragment : Fragment(), PostOnClickListener{
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewmodel: TheViewModel
+    private lateinit var mainAdapter: MainAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,18 +33,21 @@ class HomeFragment : Fragment(), PostOnClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewmodel.getData().observe(viewLifecycleOwner, Observer {
-            setRecyclerView(it!! as ArrayList<PostData>)
+        setRecyclerView()
+
+        viewmodel.getData().observe(viewLifecycleOwner, Observer {list->
+            mainAdapter.updateData(list as ArrayList<PostData>)
+            binding.progBar.visibility = View.GONE
         })
         binding.addPostBtn.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction().add(R.id.fragment_container, PostFragment()).addToBackStack("post").commit()
         }
     }
 
-    private fun setRecyclerView(list: ArrayList<PostData>) {
-        binding.progBar.visibility = View.GONE
+    private fun setRecyclerView() {
+        mainAdapter = MainAdapter(this)
         binding.recyclerView.apply {
-            adapter = MainAdapter(list,this@HomeFragment)
+            adapter = mainAdapter
             layoutManager = LinearLayoutManager(context)
         }
     }

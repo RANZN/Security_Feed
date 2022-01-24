@@ -27,7 +27,7 @@ class ProfileFragment : Fragment(), PostOnClickListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var onClickProfile: OnClickProfile
     private lateinit var viewmodel: TheViewModel
-
+    private lateinit var mainAdapter: MainAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
@@ -50,6 +50,7 @@ class ProfileFragment : Fragment(), PostOnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setRecyclerView()
         binding.apply {
             tvName.text = auth.currentUser!!.displayName
 
@@ -61,16 +62,16 @@ class ProfileFragment : Fragment(), PostOnClickListener {
                 onClickProfile.addPost()
             }
         }
-
         viewmodel.getProfileLists().observe(viewLifecycleOwner, Observer {
-            setRecyclerView(it as ArrayList<PostData>)
+            mainAdapter.updateData(it as ArrayList<PostData>)
         })
     }
 
-    private fun setRecyclerView(list: ArrayList<PostData>) {
+    private fun setRecyclerView() {
+        mainAdapter = MainAdapter(this)
         binding.postRecyclerView.apply {
-            adapter = MainAdapter(list,this@ProfileFragment)
             layoutManager = LinearLayoutManager(context)
+            adapter = mainAdapter
         }
     }
 
